@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+	{% if category %}
+		{{ category.description | truncatewords:155}}
+	{% else %}
+		Welcome to Django Ecom
+	{% endif %}
+{% endblock metadescription %}
+
+{% block title %}
+	{% if category %}
+		{{ category.name }}
+	{% else %}
+		Collections
+	{% endif %}
+{% endblock title %}
+
+{% comment %}breadcrumb{% endcomment %}
+{% block content %}
+	{% if category %}
+		<div>
+			<div>
+				<p>
+					<a href="{% url 'shop:all-categories' %}">Our Product Collection</a> | {{ category.name}}
+				</p>
+			</div>
+		</div> 
+	{% endif %}
+	<div>
+		{% if category %}
+			<h3>{{ category.name}}</h3>
+			<p>{{ category.description}}</p>
+		{% else %}
+			<h3>All Products</h3>
+		{% endif %}
+	</div> 
+
+	<div>
+		{% for p in products %}
+			<div>
+			<a href="#!">
+				<img src="{{ p.image.url }}" alt="{{ p.name }}">
+				<div>
+					<h4>{{ p.name }}</h4>
+					<p>${{ p.price}}</p>
+				</div>
+			</a>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock content %}
