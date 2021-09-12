@@ -7,7 +7,9 @@ class CategoryAdmin(admin.ModelAdmin):
         'name',
         'slug',
     )
-    prepopulated_fields = {'slug': ('name', )}
+    prepopulated_fields = {
+        'slug': ('name', ),
+    }
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -24,7 +26,9 @@ class ProductAdmin(admin.ModelAdmin):
         'stock',
         'available',
     )
-    prepopulated_fields = {'slug': ('name', )}
+    prepopulated_fields = {
+        'slug': ('name', ),
+    }
     list_per_page = 20
 
 
